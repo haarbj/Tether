@@ -1,4 +1,5 @@
 # Tether
+![Alt text](../Photos/Logo.png)
 
 ## Table of Contents
 
@@ -90,4 +91,14 @@
 ## Wireframes
 
 ## Schema 
+[Tables of Attribute Types](https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0)
+
+[Tables of Attribute Types](https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0)
+
+[Tables of Attribute Types](https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0)
+
+[Tables of Attribute Types](https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0)
+
+[Tables of Attribute Types](https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0)
+
 [Tables of Attribute Types](https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0)
