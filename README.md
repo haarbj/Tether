@@ -90,4 +90,4 @@
 ## Wireframes
 
 ## Schema 
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTRvzNuIJOw2OL4hQUOdvDwPePzh2Pm_OS1uoGEXdh_vwSdgGfrmk6vUqHa0pRPuJkCUR13ub6HI9LF/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+{google_docs}https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0{/google_docs}
