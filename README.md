@@ -88,3 +88,5 @@
 * => View/Edit Contacts
 
 ## Wireframes
+
+## Schema 
