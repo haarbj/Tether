@@ -1,5 +1,4 @@
-
-# Coachify
+# Tether
 
 ## Table of Contents
 
