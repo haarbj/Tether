@@ -89,6 +89,10 @@
 * => View/Edit Contacts
 
 ## Wireframes
+![Alt text](Photos/LoginRegisterPage.png)
+![Alt text](Photos/AddReminder.png)
+![Alt text](Photos/ViewReminder.png)
+![Alt text](Photos/HomeAddContact.png)
 
 ## Schema 
 [Tables of Attribute Types](https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0)
