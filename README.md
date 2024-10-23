@@ -105,87 +105,81 @@
 
 ### Application program design
 #### Function 1: Add_New_Contact_w_Reminder
-- //This function adds a new contact to the user's list and sets up a reminder for reaching out. It accesses the “user_social_contact” table, “reminder” table, “reminds” table, and “refers” table
+- This function adds a new contact to the user's list and sets up a reminder for reaching out. It accesses the “user_social_contact” table, “reminder” table, “reminds” table, and “refers” table
 - Input: userID, contactPhoneNumber, contactFirstName, contactMiddleName, contactLastName, reminderContent, reminderFrequency, reminderFormat 
-- Steps:
-
-- (1) Insert contactPhoneNumber, contactFirstName, contactMiddleName, and contactLastName into the "User_Social_Contact" table for the given userID. 
+```
+(1) Insert contactPhoneNumber, contactFirstName, contactMiddleName, and contactLastName into the "User_Social_Contact" table for the given userID. 
 //Adds the social contact information under the user's list of contacts. 
-- (2) Insert a new entry into the "Reminder" table with reminderContent and reminderFrequency.
+(2) Insert a new entry into the "Reminder" table with reminderContent and reminderFrequency.
 //Creates a reminder for this contact with the specified content (e.g., message or note) and frequency (e.g., daily, weekly, monthly). 
-- (3) Retrieve the generated ReminderID for the newly inserted reminder. 
-- (4) Insert an entry into the "Reminds" table with the userID, ReminderID, and reminderFormat (e.g., email, SMS).
+(3) Retrieve the generated ReminderID for the newly inserted reminder. 
+(4) Insert an entry into the "Reminds" table with the userID, ReminderID, and reminderFormat (e.g., email, SMS).
 //Associates the reminder with the user and specifies the format of the reminder notification. 
-- (5) Insert an entry into the "Refers" table with the ReminderID and contactPhoneNumber. 
+(5) Insert an entry into the "Refers" table with the ReminderID and contactPhoneNumber. 
 //Links the reminder to the contact by phone number. 
-- (6) Confirm successful insertion and display the contact and reminder details to the user.
-
+(6) Confirm successful insertion and display the contact and reminder details to the user.
+```
 
 #### Function 2: Delete_Contact_Associated_Reminder
-- //This function removes a contact and deletes the corresponding reminder. It accesses the “user_social_contact” table, “refers” table, “reminder” table, and “reminds” table.
+- This function removes a contact and deletes the corresponding reminder. It accesses the “user_social_contact” table, “refers” table, “reminder” table, and “reminds” table.
 - Input: userID, contactPhoneNumber
-- Steps:
-
-- (1) Query the "User_Social_Contact" table to find the contact for the given userID and contactPhoneNumber.
+```
+(1) Query the "User_Social_Contact" table to find the contact for the given userID and contactPhoneNumber.
 //Ensure the contact exists in the user's social contact list.
-- (2) Query the "Refers" table using contactPhoneNumber to retrieve the associated ReminderID.
-- (3) Delete the associated reminder from the "Reminder" and "Reminds" tables using ReminderID and userID.
+(2) Query the "Refers" table using contactPhoneNumber to retrieve the associated ReminderID.
+(3) Delete the associated reminder from the "Reminder" and "Reminds" tables using ReminderID and userID.
 //Remove any reminder linked to this contact for the user.
-- (4) Delete the contact from the "User_Social_Contact" table using the contactPhoneNumber and userID.
+(4) Delete the contact from the "User_Social_Contact" table using the contactPhoneNumber and userID.
  //Remove the contact from the user's list.
-- (5) Confirm successful deletion and notify the user that no further reminders will be sent for this contact.
-
+(5) Confirm successful deletion and notify the user that no further reminders will be sent for this contact.
+```
 
 #### Function 3: Update_Reminder_Contact
-- //This function updates the reminder schedule for a specific contact. It accesses the “reminder” table, “reminds” table, and “refers” table.
+- This function updates the reminder schedule for a specific contact. It accesses the “reminder” table, “reminds” table, and “refers” table.
 - Input: userID, contactPhoneNumber, newReminderContent, newReminderFrequency, newReminderFormat 
-- Steps:
-
-- (1) Query the "Refers" table using contactPhoneNumber to retrieve the associated ReminderID. 
-- (2) Update the "Reminder" table to set the new Content and Frequent values for the given ReminderID.
+```
+(1) Query the "Refers" table using contactPhoneNumber to retrieve the associated ReminderID. 
+(2) Update the "Reminder" table to set the new Content and Frequent values for the given ReminderID.
 //Modify the reminder content and frequency. 
-- (3) Update the "Reminds" table to set the new Format value for the given userID and ReminderID.
+(3) Update the "Reminds" table to set the new Format value for the given userID and ReminderID.
 //Modify the reminder format (e.g., change from email to SMS). 
-- (4) Confirm successful update and display the updated reminder details to the user.
-
+(4) Confirm successful update and display the updated reminder details to the user.
+```
 
 #### Function 4: View_Contacts_Reminder_Status
-- //This function retrieves and displays a list of the user's contacts, along with their reminder status. It accesses the “user_social_contact” table, “refers” table, “reminder” table, and “reminds” table. 
+- This function retrieves and displays a list of the user's contacts, along with their reminder status. It accesses the “user_social_contact” table, “refers” table, “reminder” table, and “reminds” table. 
 - Input: userID
-- Steps:
-
-- (1) Query the "User_Social_Contact" table to retrieve all contacts associated with the userID. //Get the list of contacts the user has added. 
-- (2) For each contact, query the "Refers" table using the contactPhoneNumber to retrieve the associated ReminderID. 
-- (3) Query the "Reminder" and "Reminds" tables using the ReminderID to retrieve the Content, Frequent, and Format values.
+```
+(1) Query the "User_Social_Contact" table to retrieve all contacts associated with the userID. //Get the list of contacts the user has added. 
+(2) For each contact, query the "Refers" table using the contactPhoneNumber to retrieve the associated ReminderID. 
+(3) Query the "Reminder" and "Reminds" tables using the ReminderID to retrieve the Content, Frequent, and Format values.
 //Gather reminder information for each contact, including the reminder content, frequency, and format. 
-- (4) Display the list of contacts along with their reminder content, frequency, and next scheduled reminder.
+(4) Display the list of contacts along with their reminder content, frequency, and next scheduled reminder.
 //Show the user the full list of contacts and their reminder status.
-
+```
 
 #### Function 5: Query_Pending_Reminders
-- //This function retrieves all pending reminders based on the user's set reminder schedule. It accesses the “user_social_contact” table, “refers” table, “reminder” table, and “reminds” table.
+- This function retrieves all pending reminders based on the user's set reminder schedule. It accesses the “user_social_contact” table, “refers” table, “reminder” table, and “reminds” table.
 - Input: userID, currentDate
-- Steps:
-
-- (1) Query the "reminds" table using userID to retrieve all ReminderIDs for which the next reminder date is due (i.e., currentDate >= nextReminderDate). 
+```
+(1) Query the "reminds" table using userID to retrieve all ReminderIDs for which the next reminder date is due (i.e., currentDate >= nextReminderDate). 
 //Identify all reminders that are due or past due based on the current date. 
-- (2) For each ReminderID, query the "Refers" table to retrieve the corresponding contactPhoneNumber. 
-- (3) Query the "User_Social_Contact" table using the contactPhoneNumber to retrieve the contact details (e.g., first name, last name).
+(2) For each ReminderID, query the "Refers" table to retrieve the corresponding contactPhoneNumber. 
+(3) Query the "User_Social_Contact" table using the contactPhoneNumber to retrieve the contact details (e.g., first name, last name).
 //Get the contact information for the pending reminders. 
-- (4) Query the "Reminder" table to retrieve the Content and Frequent values for each pending reminder. 
-- (5) Display a list of pending reminders, including the contact's name, reminder content, and next reminder date.
+(4) Query the "Reminder" table to retrieve the Content and Frequent values for each pending reminder. 
+(5) Display a list of pending reminders, including the contact's name, reminder content, and next reminder date.
 //Show the user the contacts they need to reach out to, along with the reminder content.
-
+```
 
 #### Function 6: Get_Tot_Num_Contacts_Reminders
-- //This function aggregates data to return the total number of contacts and reminders for a user. It accesses the "user_social_contact" table and "reminds" table.
+- This function aggregates data to return the total number of contacts and reminders for a user. It accesses the "user_social_contact" table and "reminds" table.
 - Input: userID
-- Steps:
-
-
-- (1) Query the "User_Social_Contact" table to count the total number of contacts for the given userID.
+```
+(1) Query the "User_Social_Contact" table to count the total number of contacts for the given userID.
 //Uses COUNT() to get the total number of contacts.
-- (2) Query the "Reminds" table to count the total number of reminders set for the given userID.
+(2) Query the "Reminds" table to count the total number of reminders set for the given userID.
 //Uses COUNT() to get the total number of reminders.
-- (3) Display the total number of contacts and reminders to the user.
+(3) Display the total number of contacts and reminders to the user.
 //Shows summary information to the user.
+```
