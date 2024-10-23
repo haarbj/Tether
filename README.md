@@ -90,4 +90,4 @@
 ## Wireframes
 
 ## Schema 
-[{google_docs}https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0{/google_docs}](Tables of Attribute Types)
+[https://docs.google.com/spreadsheets/d/10xbaoro1ICVmPqPffddmhzqsFLJjYdmjbOvbMuxgeh8/edit?gid=0#gid=0](Tables of Attribute Types)
