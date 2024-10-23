@@ -1,5 +1,5 @@
 # Tether
-![Alt text](Photos/LogoTether.png)
+![Alt text](Photos/TetherLogo.png)
 
 ## Table of Contents
 
