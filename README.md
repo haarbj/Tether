@@ -97,7 +97,7 @@
 ## Schema 
 
 ### Revised conceptual database design
-## Assumptions
+#### Assumptions
 - This app has 6 entity sets. The assumptions for the our ER model are as listed:
   -  Each user of our app can be uniquely identified by their user ID, which is automatically generated upon user’s registration of our app.
   -  We assumed the user’s address to be a multi-value attribute so that we can take apart user’s address based on street, city, state, and their zip code.
