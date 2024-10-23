@@ -99,18 +99,19 @@
 ### Revised conceptual database design
 ## Assumptions
 - This app has 6 entity sets. The assumptions for the our ER model are as listed:
--  1. Each user of our app can be uniquely identified by their user ID, which is automatically generated upon user’s registration of our app.
--  2. We assumed the user’s address to be a multi-value attribute so that we can take apart user’s address based on street, city, state, and their zip code.
--  3. We also assume the user has the derived attribute of number of contacts, which can be derived when we have an idea of how many contact the user has.
--  4. For the entity set contact, we assume it to be a weak entity to the user entity set since different users may have same contact (same phone number – which is used as partial key here) so we also rely on user ID (key of user entity set) to uniquely identify the contact as well.
--  5. The reminder entity set makes use of or refers to the contact entity set and generates a reminder that is sent back to the user.
--  6. For each reminder (a message to the user), it can be sent in different format (audio, video, text), and each reminder message can be uniquely identified by the reminder ID.7. Every user also has to pay, therefore has to go through the payment process (payment entity).
--  8. There are two disjointly ways to pay for the app, one through E-check, the other one through a debit card. For E-check, it needs to have routing number and account number to go through the payment and for debit card it needs to provide account number to assist the payment process. Both E-check and debit card belongs to the payment entity.
--  9. The user and the payment entities are 1 on 1 since each user has to go through 1 payment to permanently use the app.
--  10. The has relation between user and contact is 1 (user) to many (contact) with total participation on the contact since all contacts should belong to some users while some users (if they don’t grant access to the app to their contacts) can have no contact info available. 1 user can have many contacts or no contact.
--  11. The refers relation between reminder and contact is 1 on 1 since there is 1 reminder participation on both sides since all users should be getting some reminders (or they are not using our app) and all reminders should be sent out to some users. The
+  -  Each user of our app can be uniquely identified by their user ID, which is automatically generated upon user’s registration of our app.
+  -  We assumed the user’s address to be a multi-value attribute so that we can take apart user’s address based on street, city, state, and their zip code.
+  -  We also assume the user has the derived attribute of number of contacts, which can be derived when we have an idea of how many contact the user has.
+  -  For the entity set contact, we assume it to be a weak entity to the user entity set since different users may have same contact (same phone number – which is used as partial key here) so we also rely on user ID (key of user entity set) to uniquely identify the contact as well.
+  -  The reminder entity set makes use of or refers to the contact entity set and generates a reminder that is sent back to the user.
+  -  For each reminder (a message to the user), it can be sent in different format (audio, video, text), and each reminder message can be uniquely identified by the reminder ID.7. Every user also has to pay, therefore has to go through the payment process (payment entity).
+  -  There are two disjointly ways to pay for the app, one through E-check, the other one through a debit card. For E-check, it needs to have routing number and account number to go through the payment and for debit card it needs to provide account number to assist the payment process. Both E-check and debit card belongs to the payment entity.
+  -  The user and the payment entities are 1 on 1 since each user has to go through 1 payment to permanently use the app.
+  -  The has relation between user and contact is 1 (user) to many (contact) with total participation on the contact since all contacts should belong to some users while some users (if they don’t grant access to the app to their contacts) can have no contact info available. 1 user can have many contacts or no contact.
+  - The refers relation between reminder and contact is 1 on 1 since there is 1 reminder participation on both sides since all users should be getting some reminders (or they are not using our app) and all reminders should be sent out to some users. The
 being sent out to the user for each contact on a periodic basis (hence the frequency attribute). Some contact can have no reminder (for example the pizza boy number), while all reminders to be referring to some contact that user has, hence total participation of reminder. The reminder also has content stored.
--  12. The relation between user and reminder is 1 (user) to many (reminder) since 1 user can get multiple reminders of who they should be keeping in touch with. It is total reminder can come in different format (audio, video, text) upon being sent out.
+  - The relation between user and reminder is 1 (user) to many (reminder) since 1 user can get multiple reminders of who they should be keeping in touch with. It is total reminder can come in different format (audio, video, text) upon being sent out.
+    
 ![Alt text](Photos/ER.png)
 
 ### Logical database design
