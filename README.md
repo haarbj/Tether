@@ -398,3 +398,7 @@ CREATE TABLE Assist (
 );
 
 - These will automatically create the neccessary tables for us. 
+- After creation of the schemas, inside the application folder, find Xampp, then go to folder '[text](../../../../../../../Applications/XAMPP/htdocs)'. In this directory put tether folder inside of it. You can access the web portal through 'http://localhost/tether/'
+
+
+
