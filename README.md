@@ -298,3 +298,7 @@
     ```
     //Shows summary information to the user.
     ```
+
+#### How to start the project. 
+- Download and install Xampp on local machine. 
+- Ensure that the database schemas are created in phpmyadmin portal using the following sql commands: 
