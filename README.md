@@ -100,16 +100,17 @@
 
 ## Wireframes
 
-<div>
-    <a href="https://www.loom.com/share/c868ba98ca524393b7fe71212c28a95a">
-      <img style="max-width:600px;" src="https://cdn.loom.com/sessions/thumbnails/c868ba98ca524393b7fe71212c28a95a-768cd2981f2e5485-full-play.gif">
-    </a>
-  </div>
-
-![Alt text](Photos/LoginRegisterPage.png)
-![Alt text](Photos/AddReminder.png)
-![Alt text](Photos/ViewReminder.png)
-![Alt text](Photos/HomeAddContact.png)
+![Alt text](Photos/TetherUI.png)
+![Alt text](Photos/TetherUI1.png)
+![Alt text](Photos/TetherUI2.png)
+![Alt text](Photos/TetherUI3.png)
+![Alt text](Photos/TetherUI4.png)
+![Alt text](Photos/TetherUI5.png)
+![Alt text](Photos/TetherUI6.png)
+![Alt text](Photos/TetherUI7.png)
+![Alt text](Photos/TetherUI8.png)
+![Alt text](Photos/TetherUI9.png)
+![Alt text](Photos/TetherUI10.png)
 
 ## Schema
 
