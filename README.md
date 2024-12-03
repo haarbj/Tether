@@ -100,6 +100,12 @@
 
 ## Wireframes
 
+<div>
+    <a href="https://www.loom.com/share/c868ba98ca524393b7fe71212c28a95a">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/c868ba98ca524393b7fe71212c28a95a-768cd2981f2e5485-full-play.gif">
+    </a>
+  </div>
+
 ![Alt text](Photos/LoginRegisterPage.png)
 ![Alt text](Photos/AddReminder.png)
 ![Alt text](Photos/ViewReminder.png)
