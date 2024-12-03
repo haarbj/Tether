@@ -140,33 +140,10 @@
 - Input: userID, contactPhoneNumber, contactFirstName, contactMiddleName, contactLastName, reminderContent, reminderFrequency, reminderFormat
 - Steps:
   - (1) Insert contactPhoneNumber, contactFirstName, contactMiddleName, and contactLastName into the "User_Social_Contact" table for the given userID.
-    ```
-    //Adds the social contact information under the user's list of contacts.
-    INSERT INTO user_social_contact (userID, contactPhoneNumber, contactFirstName, contactMiddleName, contactLastName)
-    VALUES (?, ?, ?, ?, ?);
-    ```
   - (2) Insert a new entry into the "Reminder" table with reminderContent and reminderFrequency.
-    ```
-    //Creates a reminder for this contact with the specified content (e.g., message or note) and frequency (e.g., daily, weekly, monthly).
-    INSERT INTO reminder (reminderContent, reminderFrequency)
-    VALUES (?, ?);
-    ```
   - (3) Retrieve the generated ReminderID for the newly inserted reminder.
-    ```
-    SELECT LAST_INSERT_ID();
-    ```
   - (4) Insert an entry into the "Reminds" table with the userID, ReminderID, and reminderFormat (e.g., email, SMS).
-    ```
-    //Associates the reminder with the user and specifies the format of the reminder notification.
-    INSERT INTO reminds (userID, ReminderID, reminderFormat)
-    VALUES (?, ?, ?);
-    ```
   - (5) Insert an entry into the "Refers" table with the ReminderID and contactPhoneNumber.
-    ```
-    //Links the reminder to the contact by phone number.
-    INSERT INTO refers (ReminderID, contactPhoneNumber)
-    VALUES (?, ?);
-    ```
   - (6) Confirm successful insertion and display the contact and reminder details to the user.
 
 #### Function 2: Delete_Contact_Associated_Reminder
@@ -175,27 +152,9 @@
 - Input: userID, contactPhoneNumber
 - Steps:
   - (1) Query the "User_Social_Contact" table to find the contact for the given userID and contactPhoneNumber.
-    ```
-    //Ensure the contact exists in the user's social contact list.
-    SELECT * FROM user_social_contact
-    WHERE userID = ? AND contactPhoneNumber = ?;
-    ```
   - (2) Query the "Refers" table using contactPhoneNumber to retrieve the associated ReminderID.
-    ```
-    SELECT ReminderID FROM refers
-    WHERE contactPhoneNumber = ?;
-    ```
   - (3) Delete the associated reminder from the "Reminder" and "Reminds" tables using ReminderID and userID.
-    ```
-    //Remove any reminder linked to this contact for the user.
-    DELETE FROM reminder WHERE ReminderID = ?;
-    DELETE FROM reminds WHERE ReminderID = ? AND userID = ?;
-    ```
   - (4) Delete the contact from the "User_Social_Contact" table using the contactPhoneNumber and userID.
-    ```
-    //Remove the contact from the user's list.
-    DELETE FROM user_social_contact WHERE userID = ? AND contactPhoneNumber = ?;
-    ```
   - (5) Confirm successful deletion and notify the user that no further reminders will be sent for this contact.
 
 #### Function 3: Update_Reminder_Contact
@@ -204,23 +163,8 @@
 - Input: userID, contactPhoneNumber, newReminderContent, newReminderFrequency, newReminderFormat
 - Steps:
   - (1) Query the "Refers" table using contactPhoneNumber to retrieve the associated ReminderID.
-    ```
-    SELECT ReminderID FROM refers WHERE contactPhoneNumber = ?;
-    ```
   - (2) Update the "Reminder" table to set the new Content and Frequent values for the given ReminderID.
-    ```
-    //Modify the reminder content and frequency.
-    UPDATE reminder
-    SET reminderContent = ?, reminderFrequency = ?
-    WHERE ReminderID = ?;
-    ```
   - (3) Update the "Reminds" table to set the new Format value for the given userID and ReminderID.
-    ```
-    //Modify the reminder format (e.g., change from email to SMS).
-    UPDATE reminds
-    SET reminderFormat = ?
-    WHERE userID = ? AND ReminderID = ?;
-    ```
   - (4) Confirm successful update and display the updated reminder details to the user.
 
 #### Function 4: View_Contacts_Reminder_Status
@@ -229,25 +173,9 @@
 - Input: userID
 - Steps:
   - (1) Query the "User_Social_Contact" table to retrieve all contacts associated with the userID. //Get the list of contacts the user has added.
-    ```
-    SELECT * FROM user_social_contact WHERE userID = ?;
-    ```
   - (2) For each contact, query the "Refers" table using the contactPhoneNumber to retrieve the associated ReminderID.
-    ```
-    SELECT ReminderID FROM refers WHERE contactPhoneNumber = ?;
-    ```
   - (3) Query the "Reminder" and "Reminds" tables using the ReminderID to retrieve the Content, Frequent, and Format values.
-    ```
-    //Gather reminder information for each contact, including the reminder content, frequency, and format.
-    SELECT r.reminderContent, r.reminderFrequency, rem.reminderFormat
-    FROM reminder r
-    JOIN reminds rem ON r.ReminderID = rem.ReminderID
-    WHERE rem.userID = ?;
-    ```
   - (4) Display the list of contacts along with their reminder content, frequency, and next scheduled reminder.
-    ```
-    //Show the user the full list of contacts and their reminder status.
-    ```
 
 #### Function 5: Query_Pending_Reminders
 
@@ -255,29 +183,10 @@
 - Input: userID, currentDate
 - Steps:
   - (1) Query the "reminds" table using userID to retrieve all ReminderIDs for which the next reminder date is due (i.e., currentDate >= nextReminderDate).
-    ```
-    //Identify all reminders that are due or past due based on the current date.
-    SELECT ReminderID FROM reminds
-    WHERE userID = ? AND nextReminderDate <= ?;
-    ```
   - (2) For each ReminderID, query the "Refers" table to retrieve the corresponding contactPhoneNumber.
-    ```
-    SELECT contactPhoneNumber FROM refers WHERE ReminderID = ?;
-    ```
   - (3) Query the "User_Social_Contact" table using the contactPhoneNumber to retrieve the contact details (e.g., first name, last name).
-    ```
-    //Get the contact information for the pending reminders.
-    SELECT contactFirstName, contactLastName
-    FROM user_social_contact WHERE contactPhoneNumber = ?;
-    ```
   - (4) Query the "Reminder" table to retrieve the Content and Frequent values for each pending reminder.
-    ```
-    SELECT reminderContent, reminderFrequency FROM reminder WHERE ReminderID = ?;
-    ```
   - (5) Display a list of pending reminders, including the contact's name, reminder content, and next reminder date.
-    ```
-    //Show the user the contacts they need to reach out to, along with the reminder content.
-    ```
 
 #### Function 6: Get_Tot_Num_Contacts_Reminders
 
@@ -285,19 +194,8 @@
 - Input: userID
 - Steps:
   - (1) Query the "User_Social_Contact" table to count the total number of contacts for the given userID.
-    ```
-    //Uses COUNT() to get the total number of contacts.
-    SELECT COUNT(*) FROM user_social_contact WHERE userID = ?;
-    ```
   - (2) Query the "Reminds" table to count the total number of reminders set for the given userID.
-    ```
-    //Uses COUNT() to get the total number of reminders.
-    SELECT COUNT(*) FROM reminds WHERE userID = ?;
-    ```
   - (3) Display the total number of contacts and reminders to the user.
-    ```
-    //Shows summary information to the user.
-    ```
 
 ## User Manual
 ![Alt text](Photos/Manual1.png)
