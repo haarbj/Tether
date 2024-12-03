@@ -33,49 +33,70 @@ if (!$contact) {
 <html>
 <head>
     <title>Tether - View Contact</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <!-- Include Bootstrap and custom CSS -->
+    <!-- ... -->
 </head>
 <body>
-    <h2>View/Edit Contact</h2>
-    <form action="update_contact.php" method="post">
-        <input type="hidden" name="contactPhoneNumber" value="<?php echo htmlspecialchars($contactPhoneNumber); ?>">
-        <!-- Contact Information -->
-        <label>First Name:</label>
-        <input type="text" name="contactFirstName" value="<?php echo htmlspecialchars($contact['firstName']); ?>" required><br>
-
-        <label>Middle Name:</label>
-        <input type="text" name="contactMiddleName" value="<?php echo htmlspecialchars($contact['middleName']); ?>"><br>
-
-        <label>Last Name:</label>
-        <input type="text" name="contactLastName" value="<?php echo htmlspecialchars($contact['lastName']); ?>" required><br>
-
-        <!-- Reminder Information -->
-        <h3>Reminder Settings</h3>
-        <label>Reminder Content:</label>
-        <input type="text" name="reminderContent" value="<?php echo htmlspecialchars($contact['content']); ?>" required><br>
-
-        <label>Reminder Frequency:</label>
-        <select name="reminderFrequency" required>
-            <option value="Daily" <?php if ($contact['frequency'] == 'Daily') echo 'selected'; ?>>Daily</option>
-            <option value="Weekly" <?php if ($contact['frequency'] == 'Weekly') echo 'selected'; ?>>Weekly</option>
-            <option value="Monthly" <?php if ($contact['frequency'] == 'Monthly') echo 'selected'; ?>>Monthly</option>
-        </select><br>
-
-        <label>Reminder Format:</label>
-        <select name="reminderFormat" required>
-            <option value="Text" <?php if ($contact['format'] == 'Text') echo 'selected'; ?>>Text</option>
-            <option value="Email" <?php if ($contact['format'] == 'Email') echo 'selected'; ?>>Email</option>
-            <option value="Audio" <?php if ($contact['format'] == 'Audio') echo 'selected'; ?>>Audio</option>
-            <option value="Video" <?php if ($contact['format'] == 'Video') echo 'selected'; ?>>Video</option>
-        </select><br>
-
-        <input type="submit" value="Update Contact">
-    </form>
-    <form action="delete_contact.php" method="post" onsubmit="return confirm('Are you sure you want to delete this contact?');">
-        <input type="hidden" name="contactPhoneNumber" value="<?php echo htmlspecialchars($contactPhoneNumber); ?>">
-        <input type="submit" value="Delete Contact">
-    </form>
-    <p><a href="dashboard.php">Back to Dashboard</a></p>
+    <?php include('header.php'); ?>
+    <div class="container mt-5">
+        <h2>View/Edit Contact</h2>
+        <form action="update_contact.php" method="post">
+            <input type="hidden" name="contactPhoneNumber" value="<?php echo htmlspecialchars($contactPhoneNumber); ?>">
+            <!-- Contact Information -->
+            <h4>Contact Information</h4>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>First Name:</label>
+                    <input type="text" name="contactFirstName" value="<?php echo htmlspecialchars($contact['firstName']); ?>" required class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Middle Name:</label>
+                    <input type="text" name="contactMiddleName" value="<?php echo htmlspecialchars($contact['middleName']); ?>" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Last Name:</label>
+                    <input type="text" name="contactLastName" value="<?php echo htmlspecialchars($contact['lastName']); ?>" required class="form-control">
+                </div>
+            </div>
+            <!-- Reminder Information -->
+            <h4>Reminder Settings</h4>
+            <div class="form-group">
+                <label>Reminder Content:</label>
+                <input type="text" name="reminderContent" value="<?php echo htmlspecialchars($contact['content']); ?>" required class="form-control">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Reminder Frequency:</label>
+                    <select name="reminderFrequency" required class="form-control">
+                        <option value="Daily" <?php if ($contact['frequency'] == 'Daily') echo 'selected'; ?>>Daily</option>
+                        <option value="Weekly" <?php if ($contact['frequency'] == 'Weekly') echo 'selected'; ?>>Weekly</option>
+                        <option value="Monthly" <?php if ($contact['frequency'] == 'Monthly') echo 'selected'; ?>>Monthly</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Reminder Format:</label>
+                    <select name="reminderFormat" required class="form-control">
+                        <option value="Text" <?php if ($contact['format'] == 'Text') echo 'selected'; ?>>Text</option>
+                        <option value="Email" <?php if ($contact['format'] == 'Email') echo 'selected'; ?>>Email</option>
+                        <option value="Audio" <?php if ($contact['format'] == 'Audio') echo 'selected'; ?>>Audio</option>
+                        <option value="Video" <?php if ($contact['format'] == 'Video') echo 'selected'; ?>>Video</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <input type="submit" value="Update Contact" class="btn btn-primary btn-block">
+                </div>
+        </form>
+                <div class="col-md-6">
+                    <form action="delete_contact.php" method="post" onsubmit="return confirm('Are you sure you want to delete this contact?');">
+                        <input type="hidden" name="contactPhoneNumber" value="<?php echo htmlspecialchars($contactPhoneNumber); ?>">
+                        <input type="submit" value="Delete Contact" class="btn btn-danger btn-block">
+                    </form>
+                </div>
+            </div>
+        </div>
+    <!-- Include Bootstrap JS and dependencies -->
 </body>
 </html>
 <?php

@@ -13,14 +13,14 @@ $streetNumber = htmlspecialchars($_POST['streetNumber']);
 $streetName = htmlspecialchars($_POST['streetName']);
 $city = htmlspecialchars($_POST['city']);
 $state = htmlspecialchars($_POST['state']);
-$zip = intval($_POST['zip']);
+$zip = htmlspecialchars($_POST['zip']);
 $password = $_POST['password']; // Will be hashed
 
 // Hash the password securely
 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 // Check if the email already exists
-$sql = "SELECT * FROM UserVal WHERE email = ?";
+$sql = "SELECT * FROM Users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -32,10 +32,10 @@ if ($result->num_rows > 0) {
 }
 
 // Insert the new user into the database
-$sql = "INSERT INTO UserVal (phoneNumber, email, password, firstName, middleName, lastName, zip, state, city, streetNumber, streetName)
+$sql = "INSERT INTO Users (phoneNumber, email, password, firstName, middleName, lastName, zip, state, city, streetNumber, streetName)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssssssissss", $phoneNumber, $email, $hashed_password, $firstName, $middleName, $lastName, $zip, $state, $city, $streetNumber, $streetName);
+$stmt->bind_param("sssssssssss", $phoneNumber, $email, $hashed_password, $firstName, $middleName, $lastName, $zip, $state, $city, $streetNumber, $streetName);
 
 if ($stmt->execute()) {
     // Registration successful, redirect to login

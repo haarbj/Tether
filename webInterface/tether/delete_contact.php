@@ -22,7 +22,13 @@ try {
     $stmt->bind_param("is", $userID, $contactPhoneNumber);
     $stmt->execute();
     $result = $stmt->get_result();
-    $reminderID = $result->fetch_assoc()['reminderID'];
+    $reminderData = $result->fetch_assoc();
+
+    if (!$reminderData) {
+        throw new Exception("No reminder found for this contact.");
+    }
+
+    $reminderID = $reminderData['reminderID'];
 
     // Delete from Reminds
     $sql_reminds = "DELETE FROM Reminds WHERE userID = ? AND reminderID = ?";
