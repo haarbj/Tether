@@ -35,7 +35,13 @@ try {
     $stmt->bind_param("is", $userID, $contactPhoneNumber);
     $stmt->execute();
     $result = $stmt->get_result();
-    $reminderID = $result->fetch_assoc()['reminderID'];
+    $reminderData = $result->fetch_assoc();
+
+    if (!$reminderData) {
+        throw new Exception("No reminder found for this contact.");
+    }
+
+    $reminderID = $reminderData['reminderID'];
 
     // Update Reminder
     $sql_reminder = "UPDATE Reminder SET content = ?, frequency = ? WHERE reminderID = ?";

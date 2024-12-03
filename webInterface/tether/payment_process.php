@@ -24,7 +24,7 @@ try {
         $cardAddress = htmlspecialchars($_POST['cardAddress']);
         $type_of_card = htmlspecialchars($_POST['type_of_card']);
         $cardName = htmlspecialchars($_POST['cardName']);
-        $CVV = intval($_POST['CVV']);
+        $CVV = htmlspecialchars($_POST['CVV']);
         $cardNumber = htmlspecialchars($_POST['cardNumber']);
         $cardExpDateInput = htmlspecialchars($_POST['cardExpDate']);
 
@@ -35,17 +35,12 @@ try {
         $echeckFlag = 0;
 
         // Prepare and execute payment insert with card details
-        $sql_payment = "INSERT INTO Payment (amount, invoiceNumber, paymentAmount, paymentDate, cardFlag, echeckFlag) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql_payment = "INSERT INTO Payment (amount, invoiceNumber, paymentDate, cardFlag, echeckFlag, cardAddress, type_of_card, cardName, CVV, cardNumber, cardExpDate)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql_payment);
-        $stmt->bind_param("dsdsii", $amount, $invoiceNumber, $amount, $paymentDate, $cardFlag, $echeckFlag);
+        $stmt->bind_param("dssiissssss", $amount, $invoiceNumber, $paymentDate, $cardFlag, $echeckFlag, $cardAddress, $type_of_card, $cardName, $CVV, $cardNumber, $cardExpDate);
         $stmt->execute();
         $paymentID = $conn->insert_id;
-
-        // Update card details
-        $sql_update = "UPDATE Payment SET cardAddress = ?, type_of_card = ?, cardName = ?, CVV = ?, cardNumber = ?, cardExpDate = ? WHERE paymentID = ?";
-        $stmt = $conn->prepare($sql_update);
-        $stmt->bind_param("sssissi", $cardAddress, $type_of_card, $cardName, $CVV, $cardNumber, $cardExpDate, $paymentID);
-        $stmt->execute();
 
     } else {
         // E-Check payment details
@@ -57,17 +52,12 @@ try {
         $echeckFlag = 1;
 
         // Prepare and execute payment insert with e-check details
-        $sql_payment = "INSERT INTO Payment (amount, invoiceNumber, paymentAmount, paymentDate, cardFlag, echeckFlag) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql_payment = "INSERT INTO Payment (amount, invoiceNumber, paymentDate, cardFlag, echeckFlag, echeckAccNumber, echeckRoutingNumber, echeckName, echeckAddress)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql_payment);
-        $stmt->bind_param("dsdsii", $amount, $invoiceNumber, $amount, $paymentDate, $cardFlag, $echeckFlag);
+        $stmt->bind_param("dssiissss", $amount, $invoiceNumber, $paymentDate, $cardFlag, $echeckFlag, $echeckAccNumber, $echeckRoutingNumber, $echeckName, $echeckAddress);
         $stmt->execute();
         $paymentID = $conn->insert_id;
-
-        // Update e-check details
-        $sql_update = "UPDATE Payment SET echeckAccNumber = ?, echeckRoutingNumber = ?, echeckName = ?, echeckAddress = ? WHERE paymentID = ?";
-        $stmt = $conn->prepare($sql_update);
-        $stmt->bind_param("ssssi", $echeckAccNumber, $echeckRoutingNumber, $echeckName, $echeckAddress, $paymentID);
-        $stmt->execute();
     }
 
     // Insert into Assist table

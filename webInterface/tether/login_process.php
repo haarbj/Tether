@@ -8,7 +8,7 @@ $email = htmlspecialchars($_POST['email']);
 $password = $_POST['password']; // Will be verified against the hash
 
 // Fetch user data from the database
-$sql = "SELECT userID, password, firstName FROM UserVal WHERE email = ?";
+$sql = "SELECT userID, password, firstName FROM Users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 $stmt->execute();

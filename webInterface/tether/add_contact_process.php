@@ -38,10 +38,10 @@ try {
     $reminderID = $conn->insert_id;
 
     // Insert into Refers
-    $sql_refers = "INSERT INTO Refers (reminderID, userID, phoneNumber)
+    $sql_refers = "INSERT INTO Refers (reminderID, phoneNumber, userID)
                    VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql_refers);
-    $stmt->bind_param("iis", $reminderID, $userID, $contactPhoneNumber);
+    $stmt->bind_param("isi", $reminderID, $contactPhoneNumber, $userID);
     $stmt->execute();
 
     // Insert into Reminds
