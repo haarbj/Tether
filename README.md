@@ -299,7 +299,13 @@
     //Shows summary information to the user.
     ```
 
-#### How to start the project. 
+## User Manual
+![Alt text](Photos/Manual1.png)
+![Alt text](Photos/Manual2.png)
+![Alt text](Photos/Manual3.png)
+![Alt text](Photos/Manual4.png)
+
+## How to start the project. 
 - Download and install Xampp on local machine. 
 - Ensure that the database schemas are created in phpmyadmin portal using the following sql commands: 
 CREATE TABLE UserVal (
